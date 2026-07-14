@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoVision - 4-Hour Master Roadmap</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 50px;
+            border-bottom: 2px solid #111111;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin: 0 0 5px 0;
+        }
+
+        header p {
+            color: #555555;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .senior-memo {
+            background-color: #f8fafc;
+            border-left: 4px solid #111111;
+            padding: 20px;
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        .senior-memo h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .week-section {
+            margin-bottom: 50px;
+        }
+
+        .week-header {
+            border-bottom: 1px solid #111111;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .week-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .phase-tag {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666666;
+            font-weight: 600;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .day-card {
+            align-content: start;
+            display: grid;
+            gap: 12px;
+        }
+
+        .day-title {
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .task-item input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 4px;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .task-item input[type="checkbox"]:checked + span {
+            text-decoration: line-through;
+            color: #888888;
+        }
+
+        .task-item span {
+            flex-grow: 1;
+        }
+
+        .engineering-alert {
+            font-size: 0.85rem;
+            background-color: #fff7ed;
+            color: #c2410c;
+            border: 1px solid #ffedd5;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        @media print {
+            body { padding: 0; }
+            .week-section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>EchoVision Architecture Roadmap</h1>
+        <p>Execution Strategy: 4 Hours / Day (Monday – Saturday, Sunday Off)</p>
+    </header>
+
+    <div class="senior-memo">
+        <h3>Lead Architect Deployment Directives</h3>
+        <p><strong>Sprint Cadence:</strong> Allocate 30m architecture review, 2.5h code production, and 1h test automation/commit hygiene daily.</p>
+        <p style="margin-top: 8px;"><strong>Data Footprint Rule:</strong> Everything runs on a single **PostgreSQL + pgvector** architecture instance to meet low latency parameters. Do not layer auxiliary platforms.</p>
+    </div>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 1: Local Environment & Systems Foundation</h2>
+            <span class="phase-tag">Phase 1: Core AI Pipelines</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Install Python 3.11+, local PostgreSQL, and Git software dependencies.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Initialize your Git structure and commit a comprehensive developer `.gitignore` file.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Create a FastAPI app scaffold incorporating structured `main.py` and configuration trees.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Implement global HTTP exception handling interceptors across the backend runtime router.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Configure a local relational dev instance named `echovision_dev` inside PostgreSQL.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Install `psycopg2-binary` and code a database thread pooling management class.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Establish an isolated runtime credential file (`.env`) for platform authorization parameters.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Integrate `python-dotenv` modules to read host environment configurations securely.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Build a simple HTML test page containing multipart form field elements for file submission tests.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Configure FastAPI CORS properties to grant processing rights to native browser requests.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Test file uploads from the frontend harness to ensure payload parsing functionality works.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Draft local setup procedures within a root project `README.md` documentation file.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 2: Audio Capture & Whisper Ingestion</h2>
+            <span class="phase-tag">Phase 1: Core AI Pipelines</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Acquire operational developer keys from your hosted AI inference cluster instance provider.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Install the corresponding Python client wrapper libraries into your requirements file.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write a python helper engine (`transcriber.py`) to read local audio tracks and query APIs.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Log the transcription string results directly inside the terminal to audit structural fidelity.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Build the FastAPI handler path `/api/v1/audio/transcribe` to intercept incoming streaming data files.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Map this transaction pathway straight into the backend inference transcriber configurations.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Implement Javascript microphone data listeners using native browser audio controller objects.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Construct buffer allocation rules to assemble binary voice fragments into raw payload files.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Connect the frontend click actions to dispatch asynchronous network calls to the server.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span><span class="engineering-alert">Senior Directive</span> Build a text window stitching buffer to handle word fragmentation across audio slices.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write runtime try/catch parameter logic boundaries to intercept bad data drops or recording time-outs.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Run network upload stress benchmarks to analyze chunk file sizing limits against performance requirements.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 3: Llama 4 Concept Extraction</h2>
+            <span class="phase-tag">Phase 1: Core AI Pipelines</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Verify Meta Llama 4 engine behavior properties within the provider's active API test workspace.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Formulate custom system routing text definitions designed to strip inputs down to bare conceptual nouns.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write a python utility runner (`analyzer.py`) to process transcript texts through the Llama 4 module context.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Apply strict code guidelines to force output formatting down to simple keywords.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Chain your pipeline: route text objects emitted from Whisper straight into your new analyzer script execution loop.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Ensure live mic text captures successfully register clean keyword terms inside the application shell logs.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Provision image data index tokens using the Bing Image Search panel on your developer workspace.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Write an standalone script utilizing clear internet calls to check external visual query output arrays.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Merge the complete layout flow parameters: Audio Capture -> Whisper Text -> Llama 4 Extraction -> Bing Search Link.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that query response definitions return text logs and target asset location fields simultaneously.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Configure asset fallback properties (e.g. standard illustrations) to handle empty visual matches cleanly.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Commit the unified processing features safely to your code project tracking architecture tree branch.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 4: Integrated Data Validation Loop</h2>
+            <span class="phase-tag">Phase 1: Core AI Pipelines</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write comprehensive mock assertion scripts mimicking highly fragmented, rapid audio input actions.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify pipeline stability handles empty audio payloads without crashing the main application server runtime loop.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Configure logging properties that record execution time benchmarks for every point in the transaction cycle.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify formatting results to check that text conversions align properly against matching keywords.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write custom text normalization tests to strip spaces, conversational fluff, and punctuation out of keywords.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Confirm that text optimization pipelines return clean keywords consistently to reduce duplicate lookups.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Trace memory utilization trends across your API server environment during prolonged text parsing execution loops.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that file buffers drop cleanly immediately after network responses return to the user.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Optimize endpoint parsing methods to ensure backend modules extract strings cleanly under continuous multi-user connections.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Benchmark data processing pipelines to ensure response times drop well beneath the project baseline targets.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Execute full system tests across the complete backend data loop to verify component interoperability.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Tag the working development setup as a functional baseline and push changes to the repository root.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 5: Relational Schema & MySQL Caching</h2>
+            <span class="phase-tag">Phase 2: Database & Caching</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Draft active database structural files creating the `cached_lecture_images` specifications.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Apply custom performance indexing metrics explicitly mapping target lookups to `search_keyword` columns.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Implement production data configuration layers matching to your database injection pool structures.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Audit index lookups under multi-user access loops to track database connection limits.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write your database write functions to insert newly resolved search phrases and image URLs.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Enforce standard parameterized binding variables in your code files to neutralize SQL injection vulnerabilities.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write backend lookup statements built to scan indexed local database tables for exact keyword entries.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Ensure data extraction methods handle empty responses gracefully without causing backend thread execution failures.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Code the core Cache-Aside conditional logic checks inside your API processing engine.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>If the keyword exists in the database, return it immediately; if not, query the external Bing API.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span><span class="engineering-alert">Senior Directive</span> Implement unique upsert methods (`ON CONFLICT DO NOTHING`) to eliminate database race conditions.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that local cache hits complete within single-digit milliseconds, saving external API query costs.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 6: PostgreSQL pgvector Expansion</h2>
+            <span class="phase-tag">Phase 2: Database & Caching</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Log into your database terminal workspace and activate the `pgvector` engine package expansion.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Run configuration statements using the core command: `CREATE EXTENSION IF NOT EXISTS pgvector;`.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Execute your database migrations to establish the high-dimensional `lecture_memory` table.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Configure data column dimensions explicitly targetting standard open embedding formats (e.g., 384 attributes).</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Install the Python processing library `sentence-transformers` into your environment dependencies tree.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Write a python helper engine to take text transcript blocks and output uniform array matrices.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Build background worker scripts that segment continuous lecture transcripts into compact data paragraphs.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify vector generation parameters to confirm vector strings map smoothly into the database database layer.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write similarity query scripts using standard database distance functions (such as the `<=>` operator).</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that your lookup utility accepts query text parameters and isolates identical past records cleanly.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Integrate the semantic vector search layer directly into the central API processing execution chain.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that repeating contextual explanations automatically prioritize using cheap local cache assets.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 7: Unified Memory Integration</h2>
+            <span class="phase-tag">Phase 2: Database & Caching</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Link the outputs of your pgvector similarity queries directly into your core application processing loops.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that query parameters pass context objects reliably into background processing threads.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Adjust the Llama 4 prompt to accept both current live text and matching past lecture summaries concurrently.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that the AI successfully balances historical context parameters alongside real-time audio transcript strings.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Test data consistency: verify that the app generates consistent keywords for topics covered in past classes.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Confirm that text optimization workflows accurately match and identify repeating lecture descriptions.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write background worker logic to save text transcripts into the vector layer without blocking server responses.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Ensure data writes process asynchronously, preventing performance delays across the main user stream.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Run comprehensive testing passes over the complete database loop to analyze data extraction performance profiles.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that vector check actions run efficiently as your local dataset row metrics continue to scale up.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Verify that database queries finish executing in less than 20 milliseconds under continuous load tests.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Stabilize the data storage layer and merge working database upgrades into the main project code repository.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 8: Web Dashboard Workspace Layout</h2>
+            <span class="phase-tag">Phase 3: Frontend Integration</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Construct your application workspace using a single HTML file template layout containing semantic layout markers.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Define clean design containers to separate text transcript outputs from adjacent image previews.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write clean custom style properties using simple, structured formatting statements to clean up typography features.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Apply responsive layout rules to ensure UI view dimensions stay stable across variable laptop viewports.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Style active interactive toggle keys using simple visual states (such as border changes during active triggers).</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Add distinct styling tags to differentiate between cached database images and fresh Bing API lookups.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Design a layout canvas component intended to show your scrolling history visual timeline cards cleanly.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Include simple layout processing placeholders to render while waiting for server network lookups to finish.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Verify workspace layout rendering actions across different web browsers to ensure visual consistency.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Extract repetitive presentation code items into a single utility stylesheet document array.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Audit dashboard component navigation pathways using clean browser controls to verify standard layout actions.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Organize all workspace presentation updates within your central project tree branch repositories.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 9: Client Scripting & State Synchronization</h2>
+            <span class="phase-tag">Phase 3: Frontend Integration</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Initialize an independent client logic controller script file (`app.js`) linked inside your page markup context.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Write default browser event handling functions built to catch basic recording toggle switches.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Use the browser `navigator.mediaDevices.getUserMedia` API setup to prompt users for mic access permissions securely.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Set up default recording properties to ensure audio inputs extract using standardized wave properties.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Configure browser `MediaRecorder` engine processes to watch audio streams from hardware devices continuously.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Write standard runtime buffering hooks inside data capture event routines to store stream bits safely.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write asynchronous network methods built to package raw recorded audio fragments into clear upload structures.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Implement browser `fetch()` scripts pointed directly at your local FastAPI server endpoints.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span><span class="engineering-alert">Senior Directive</span> Build a frontend de-duplication state check to prevent rendering repeated copies of the same image cards.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Write clean DOM updates to add newly resolved transcript strings and image targets to the page view.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Build secure catch logic within your scripts to identify transaction failures or server disconnect states smoothly.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Perform manual testing walks to ensure data renders accurately across multiple application cycles.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 10: Full Pipeline Orchestration</h2>
+            <span class="phase-tag">Phase 3: Frontend Integration</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Validate access origin header behaviors across active backend-to-frontend transaction pathways.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Launch parallel local test environments to audit data behaviors during rapid, simultaneous transaction actions.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Trace server memory retention traits under constant data workload stress loops via server logs.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Confirm audio binary objects flush cleanly out of server variables immediately after text translation completions.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Verify pipeline text consistency values across consecutive mock lecture context streams.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Confirm that text updates match up visually against the correct graphical diagrams inside the browser.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Create unified server tracking log markers that calculate processing latency values down to the millisecond.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Isolate data transfer bottlenecks by charting execution speeds throughout the core loop phases.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Optimize primary query search statement indices to maximize backend data matching velocities.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Ensure data lookups run cleanly and return clear results as database row counts continue to expand.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Deploy script updates to fix small dashboard rendering bugs found during cross-platform functional tests.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Save the consolidated application code package tree as a stable backup onto the main project branch.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 11: Server-Sent Events (SSE) Optimization</h2>
+            <span class="phase-tag">Phase 4: Optimization & Launch</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Set up persistent Server-Sent Events (SSE) inside your FastAPI app to handle streaming updates without polling.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Move network image lookups into background worker loops to avoid blocking the main live tracking cycle.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Fine-tune audio frame slicing properties down to minimal, low-overhead transaction dimensions (e.g., 5-second blocks).</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that shorter audio blocks upload and transcribe faster without breaking individual text sentences.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write standard string cleaning functions to normalize words (e.g. lowercase, trim) before executing cache queries.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that cleaning search phrases increases database cache hits by neutralizing duplicate word variations.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Implement image loading error validation filters inside your frontend JS file to trace dead external links.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Build smooth fallback views to render alternative display cards if an image url fails to load.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Execute full, multi-hour mock lecture runs to verify server transaction speeds remain uniform over long sessions.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Confirm total end-to-end processing loops consistently complete well under your 1.2-second performance target.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Strip debug metrics, print statements, and unused variables out of your code files to clean the codebase.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Run a final lint check across all project directories to verify style rules look professional and clean.</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="week-section">
+        <div class="week-header">
+            <h2 class="week-title">Week 12: Production Hardening & Sign-Off</h2>
+            <span class="phase-tag">Phase 4: Optimization & Launch</span>
+        </div>
+        <div class="days-grid">
+            <div class="day-card">
+                <div class="day-title">Monday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Draft a clear deployment outline tracking database schema updates and cloud service provisioning needs.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Configure production server modules to safely read configuration tokens from the host environment variables.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Tuesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Conduct comprehensive safety audits, verifying that server keys and database passwords are completely secure.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Confirm that your web dashboard safely blocks unverified or unexpected external API access requests.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Wednesday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Write custom automation scripts to populate your production database tables with core fallback visual records.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Verify that manual lookups across the production server environment execute smoothly without connection errors.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Thursday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Deploy the complete, compiled application package onto your production server container environment.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Confirm the frontend dashboard layout page loads smoothly and communicates reliably with cloud endpoints.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Friday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Onboard a beta cohort of early user accounts to audit application performance behaviors under load.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Monitor active transaction logs to verify the live processing pipelines run without dropped connections.</span></li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <div class="day-title">Saturday</div>
+                <ul class="task-list">
+                    <li class="task-item"><input type="checkbox"> <span>Tag your working repository source code configuration branch as the official release of your MVP v1.0.</span></li>
+                    <li class="task-item"><input type="checkbox"> <span>Launch your low-latency, open-source lecture assistant platform live on the web!</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>
