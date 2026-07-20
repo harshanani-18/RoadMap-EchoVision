@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>80-Day DSA Roadmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --bg:#10141C;
+    --panel:#171C26;
+    --panel-2:#1D2330;
+    --grid-line:rgba(255,255,255,0.045);
+    --text:#E7EAF1;
+    --text-dim:#8B93A7;
+    --text-faint:#5B6376;
+    --border:#2A3140;
+
+    --c-graphs:#4FD1C5;
+    --c-graphs-dim:#4FD1C526;
+    --c-dp:#F6AD55;
+    --c-dp-dim:#F6AD5526;
+    --c-trie:#B794F4;
+    --c-trie-dim:#B794F426;
+    --c-strings:#FC8181;
+    --c-strings-dim:#FC818126;
+    --c-integ:#68D391;
+    --c-integ-dim:#68D39126;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+      var(--bg);
+    background-size:28px 28px;
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:80px;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    padding:56px 0 32px;
+    border-bottom:1px solid var(--border);
+    margin-bottom:8px;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    margin-bottom:14px;
+  }
+  h1{
+    font-family:'JetBrains Mono', monospace;
+    font-size:clamp(28px, 5vw, 44px);
+    font-weight:700;
+    margin:0 0 12px;
+    letter-spacing:-0.01em;
+    line-height:1.15;
+  }
+  h1 span{color:var(--c-graphs);}
+  header p{
+    color:var(--text-dim);
+    font-size:15.5px;
+    line-height:1.6;
+    max-width:560px;
+    margin:0 0 28px;
+  }
+
+  /* progress */
+  .progress-row{display:flex; align-items:center; gap:16px; margin-bottom:6px;}
+  .progress-track{
+    flex:1;
+    height:8px;
+    background:var(--panel-2);
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--border);
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--c-graphs), var(--c-dp), var(--c-trie), var(--c-strings), var(--c-integ));
+    transition:width .4s ease;
+  }
+  .progress-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--text-dim);
+    white-space:nowrap;
+    min-width:92px;
+    text-align:right;
+  }
+
+  /* ===== GRAPH NAV (signature element) ===== */
+  .graphnav{
+    margin:36px 0 8px;
+    padding:20px 8px 4px;
+    overflow-x:auto;
+  }
+  .graphnav svg{display:block; min-width:640px; width:100%; height:auto;}
+  .gnode{cursor:pointer;}
+  .gnode circle{transition:r .15s ease, filter .15s ease;}
+  .gnode:hover circle{filter:brightness(1.3);}
+  .gnode text{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    fill:var(--text);
+  }
+  .gnode .sub{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:400;
+    fill:var(--text-faint);
+    font-size:10px;
+  }
+  .gedge{stroke:var(--border); stroke-width:2;}
+
+  /* ===== PHASE SECTIONS ===== */
+  .phase{
+    margin-top:52px;
+    scroll-margin-top:24px;
+  }
+  .phase-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:6px;
+    padding-bottom:14px;
+    border-bottom:2px solid var(--phase-color);
+  }
+  .phase-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--phase-color);
+    border:1px solid var(--phase-color);
+    border-radius:4px;
+    padding:2px 7px;
+  }
+  .phase-title{
+    font-family:'JetBrains Mono', monospace;
+    font-size:21px;
+    font-weight:700;
+  }
+  .phase-meta{
+    margin-left:auto;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--text-dim);
+  }
+  .phase-note{
+    color:var(--text-dim);
+    font-size:14px;
+    margin:14px 0 20px;
+    line-height:1.55;
+  }
+
+  details.week{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    margin-bottom:10px;
+    overflow:hidden;
+  }
+  details.week[open]{border-color:var(--phase-color-mid, var(--border));}
+  details.week summary{
+    list-style:none;
+    cursor:pointer;
+    padding:14px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text);
+  }
+  details.week summary::-webkit-details-marker{display:none;}
+  details.week summary::before{
+    content:"▸";
+    color:var(--phase-color);
+    transition:transform .15s ease;
+    display:inline-block;
+    width:10px;
+  }
+  details.week[open] summary::before{transform:rotate(90deg);}
+  .week-progress{
+    margin-left:auto;
+    font-size:11.5px;
+    color:var(--text-faint);
+    font-weight:400;
+  }
+
+  .day-row{
+    display:grid;
+    grid-template-columns:34px 74px 1fr 1fr;
+    gap:12px;
+    align-items:center;
+    padding:11px 18px;
+    border-top:1px solid var(--border);
+    font-size:13.5px;
+  }
+  .day-row:hover{background:var(--panel-2);}
+  .day-row.done{opacity:0.45;}
+  .day-row.done .topic, .day-row.done .task{text-decoration:line-through; text-decoration-color:var(--text-faint);}
+
+  .chk{
+    width:18px; height:18px;
+    border-radius:5px;
+    border:1.5px solid var(--phase-color);
+    appearance:none;
+    -webkit-appearance:none;
+    cursor:pointer;
+    position:relative;
+    background:transparent;
+    flex-shrink:0;
+  }
+  .chk:checked{background:var(--phase-color);}
+  .chk:checked::after{
+    content:"";
+    position:absolute;
+    left:5px; top:1px;
+    width:5px; height:9px;
+    border:solid var(--bg);
+    border-width:0 2px 2px 0;
+    transform:rotate(45deg);
+  }
+  .chk:focus-visible{outline:2px solid var(--phase-color); outline-offset:2px;}
+
+  .daynum{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    color:var(--phase-color);
+  }
+  .topic{color:var(--text); font-weight:500;}
+  .task{color:var(--text-dim);}
+
+  .day-head-row{
+    display:grid;
+    grid-template-columns:34px 74px 1fr 1fr;
+    gap:12px;
+    padding:8px 18px 4px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--text-faint);
+    border-top:1px solid var(--border);
+  }
+
+  /* ===== RESOURCES ===== */
+  .resources{
+    margin-top:60px;
+    padding:26px 24px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+  }
+  .resources h2{
+    font-family:'JetBrains Mono', monospace;
+    font-size:16px;
+    margin:0 0 14px;
+  }
+  .resources ul{margin:0; padding-left:20px; color:var(--text-dim); font-size:14px; line-height:1.9;}
+  .resources strong{color:var(--text);}
+
+  footer{
+    text-align:center;
+    color:var(--text-faint);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    margin-top:50px;
+  }
+
+  @media (max-width:640px){
+    .day-row, .day-head-row{grid-template-columns:26px 56px 1fr; }
+    .day-row .task, .day-head-row .task-h{display:none;}
+    header{padding:40px 0 24px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">// study_plan.init(pace = "1hr/day", duration = "16 weeks")</div>
+    <h1>The 80-Day <span>DSA</span> Roadmap</h1>
+    <p>Graphs, Dynamic Programming, Trie, and Advanced String Algorithms — one focused hour a day, five days a week. Each node below is a phase; check off sessions as you complete them.</p>
+    <div class="progress-row">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0 / 80 days</div>
+    </div>
+  </header>
+
+  <nav class="graphnav" aria-label="Phase navigator">
+    <svg viewBox="0 0 900 130" xmlns="http://www.w3.org/2000/svg">
+      <line class="gedge" x1="80" y1="55" x2="240" y2="55"/>
+      <line class="gedge" x1="240" y1="55" x2="400" y2="55"/>
+      <line class="gedge" x1="400" y1="55" x2="560" y2="55"/>
+      <line class="gedge" x1="560" y1="55" x2="740" y2="55"/>
+
+      <a href="#phase-graphs"><g class="gnode">
+        <circle cx="80" cy="55" r="26" fill="var(--c-graphs-dim)" stroke="var(--c-graphs)" stroke-width="2"/>
+        <text x="80" y="60" text-anchor="middle" font-size="12">GR</text>
+        <text x="80" y="102" text-anchor="middle" class="sub">Graphs · w1–4</text>
+      </g></a>
+
+      <a href="#phase-dp"><g class="gnode">
+        <circle cx="240" cy="55" r="26" fill="var(--c-dp-dim)" stroke="var(--c-dp)" stroke-width="2"/>
+        <text x="240" y="60" text-anchor="middle" font-size="12">DP</text>
+        <text x="240" y="102" text-anchor="middle" class="sub">Dynamic Prog · w5–8</text>
+      </g></a>
+
+      <a href="#phase-trie"><g class="gnode">
+        <circle cx="400" cy="55" r="26" fill="var(--c-trie-dim)" stroke="var(--c-trie)" stroke-width="2"/>
+        <text x="400" y="60" text-anchor="middle" font-size="12">TR</text>
+        <text x="400" y="102" text-anchor="middle" class="sub">Trie · w9</text>
+      </g></a>
+
+      <a href="#phase-strings"><g class="gnode">
+        <circle cx="560" cy="55" r="26" fill="var(--c-strings-dim)" stroke="var(--c-strings)" stroke-width="2"/>
+        <text x="560" y="60" text-anchor="middle" font-size="12">STR</text>
+        <text x="560" y="102" text-anchor="middle" class="sub">Strings · w10–13</text>
+      </g></a>
+
+      <a href="#phase-integ"><g class="gnode">
+        <circle cx="740" cy="55" r="26" fill="var(--c-integ-dim)" stroke="var(--c-integ)" stroke-width="2"/>
+        <text x="740" y="60" text-anchor="middle" font-size="12">INT</text>
+        <text x="740" y="102" text-anchor="middle" class="sub">Integration · w14–16</text>
+      </g></a>
+    </svg>
+  </nav>
+
+  <div id="phases"></div>
+
+  <div class="resources">
+    <h2>// core_resources</h2>
+    <ul>
+      <li><strong>CSES Problem Set</strong> — topic-wise, matches this plan's structure well</li>
+      <li><strong>cp-algorithms.com</strong> — best reference for KMP, Z, Manacher, Aho-Corasick, Suffix Arrays</li>
+      <li><strong>AtCoder EDPC</strong> — for DP practice in Phase 2 &amp; 5</li>
+      <li><strong>NeetCode</strong> — video explanations for Graphs / DP / Trie if you prefer video over text</li>
+    </ul>
+  </div>
+
+  <footer>progress is stored in this page only — it resets on reload</footer>
+</div>
+
+<script>
+const PHASES = [
+  {
+    id:"graphs", color:"var(--c-graphs)", num:"01", title:"Graphs",
+    meta:"Weeks 1–4 · 20 sessions",
+    note:"Traversal fundamentals, shortest paths, MST, and the union-find + Tarjan's toolkit.",
+    weeks:[
+      {label:"Week 1 — Traversal Basics", days:[
+        [1,"Representations","Build adj list & matrix from scratch"],
+        [2,"BFS","Implement + Flood Fill"],
+        [3,"DFS (recursive + iterative)","Implement + Number of Islands"],
+        [4,"Connected components","Number of Provinces"],
+        [5,"Bipartite check","Is Graph Bipartite?"],
+      ]},
+      {label:"Week 2 — Cycles & Ordering", days:[
+        [6,"Cycle detection (undirected)","1 problem"],
+        [7,"Cycle detection (directed, DFS colors)","1 problem"],
+        [8,"Topo sort (Kahn's/BFS)","Course Schedule I"],
+        [9,"Topo sort (DFS-based)","Course Schedule II"],
+        [10,"Review + mixed practice","2 easy problems, timed"],
+      ]},
+      {label:"Week 3 — Shortest Paths", days:[
+        [11,"Dijkstra's — concept & implement","1 problem"],
+        [12,"Dijkstra's practice","Network Delay Time"],
+        [13,"Bellman-Ford","Implement + explain negative cycles"],
+        [14,"Floyd-Warshall","Small all-pairs problem"],
+        [15,"0-1 BFS","Cheapest Flights w/ K Stops"],
+      ]},
+      {label:"Week 4 — MST, DSU & Advanced", days:[
+        [16,"Union-Find w/ path compression","Implement from scratch"],
+        [17,"Kruskal's MST","Min Cost to Connect Points"],
+        [18,"Prim's MST","Compare with Kruskal's, same problem"],
+        [19,"Bridges & Articulation Points","Tarjan's — 1 problem"],
+        [20,"Review + timed contest","2 CSES graph problems"],
+      ]},
+    ]
+  },
+  {
+    id:"dp", color:"var(--c-dp)", num:"02", title:"Dynamic Programming",
+    meta:"Weeks 5–8 · 20 sessions",
+    note:"From memoization intuition to knapsacks, sequence DP, and tree/bitmask/interval patterns.",
+    weeks:[
+      {label:"Week 5 — DP Foundations", days:[
+        [21,"Recursion → memoization","Fibonacci, Climbing Stairs"],
+        [22,"Tabulation conversion","Convert Day 21 to bottom-up"],
+        [23,"2D grid DP","Unique Paths"],
+        [24,"2D grid DP practice","Min Path Sum"],
+        [25,"Linear DP","House Robber I & II"],
+      ]},
+      {label:"Week 6 — Knapsack Family", days:[
+        [26,"0/1 Knapsack","Core template"],
+        [27,"Subset Sum","1 problem"],
+        [28,"Partition Equal Subset Sum","1 problem"],
+        [29,"Unbounded Knapsack","Coin Change I"],
+        [30,"Coin Change II","Count ways variant"],
+      ]},
+      {label:"Week 7 — Sequence DP", days:[
+        [31,"LCS","Implement"],
+        [32,"LIS O(n²)","Implement"],
+        [33,"LIS O(n log n)","Patience sorting"],
+        [34,"Edit Distance","1 problem"],
+        [35,"Longest Palindromic Substring","DP approach"],
+      ]},
+      {label:"Week 8 — Advanced DP", days:[
+        [36,"DP on trees — intro","House Robber III"],
+        [37,"Bitmask DP — intro","Small TSP-style problem"],
+        [38,"Digit DP — intro","1 simple problem"],
+        [39,"Interval DP","Matrix Chain Multiplication"],
+        [40,"Review + timed contest","2 AtCoder EDPC problems"],
+      ]},
+    ]
+  },
+  {
+    id:"trie", color:"var(--c-trie)", num:"03", title:"Trie",
+    meta:"Week 9 · 5 sessions",
+    note:"Prefix trees, wildcard search, and XOR tries — the shortest phase, but it underpins Aho-Corasick later.",
+    weeks:[
+      {label:"Week 9 — Trie", days:[
+        [41,"Trie: insert/search","Implement Trie (LC 208)"],
+        [42,"startsWith + delete","Extend Day 41"],
+        [43,"Trie + DFS wildcard search","Design Add and Search Words"],
+        [44,"XOR Trie","Maximum XOR of Two Numbers"],
+        [45,"Trie + backtracking","Word Search II"],
+      ]},
+    ]
+  },
+  {
+    id:"strings", color:"var(--c-strings)", num:"04", title:"Advanced String Algorithms",
+    meta:"Weeks 10–13 · 20 sessions",
+    note:"Pattern matching, hashing, palindromes, suffix structures, and multi-pattern search.",
+    weeks:[
+      {label:"Week 10 — Pattern Matching Basics", days:[
+        [46,"Naive matching","Implement naive strStr"],
+        [47,"KMP: prefix/failure function","Build the table"],
+        [48,"KMP: full search","Implement strStr() via KMP"],
+        [49,"Z-function: concept","Build Z-array"],
+        [50,"Z-function: applications","Pattern search using Z-array"],
+      ]},
+      {label:"Week 11 — Hashing & More Matching", days:[
+        [51,"Rabin-Karp / rolling hash","Implement"],
+        [52,"Double hashing","Modify Day 51"],
+        [53,"Repeated String Match","1 problem"],
+        [54,"Shortest Palindrome","KMP trick"],
+        [55,"Review + timed mixed","2 problems"],
+      ]},
+      {label:"Week 12 — Palindromes & Suffix Structures", days:[
+        [56,"Manacher's — concept","Walk through by hand"],
+        [57,"Manacher's — implementation","Longest Palindromic Substring"],
+        [58,"Suffix array — naive build","Implement O(n² log n)"],
+        [59,"Suffix array — O(n log n) build","Read + implement partially"],
+        [60,"LCP array","Kasai's algorithm"],
+      ]},
+      {label:"Week 13 — Multi-Pattern & Integration", days:[
+        [61,"Aho-Corasick — trie + fail links","Build the automaton"],
+        [62,"Aho-Corasick — search","Stream of Characters"],
+        [63,"Suffix automaton — intro","Read + note key ideas"],
+        [64,"Distinct substrings","1 problem via suffix structures"],
+        [65,"Review + timed contest","2 CSES string problems"],
+      ]},
+    ]
+  },
+  {
+    id:"integ", color:"var(--c-integ)", num:"05", title:"Integration & Mock Practice",
+    meta:"Weeks 14–16 · 15 sessions",
+    note:"Combine everything under time pressure, and revisit anything you flagged as hard earlier.",
+    weeks:[
+      {label:"Week 14 — Graph + DP mashups", days:[
+        [66,"Shortest path with state","Bitmask + Dijkstra"],
+        [67,"Graph BFS + word logic","Word Ladder II"],
+        [68,"Grid DP with constraints","Dungeon Game"],
+        [69,"Shortest path revisit","Cheapest Flights, DP lens"],
+        [70,"Review","Re-solve a flagged problem, no notes"],
+      ]},
+      {label:"Week 15 — Trie + String mashups", days:[
+        [71,"Trie variant","Implement Magic Dictionary"],
+        [72,"Trie + palindrome check","Palindrome Pairs"],
+        [73,"Trie + backtracking","Word Squares"],
+        [74,"Trie + DP","Concatenated Words"],
+        [75,"Review","Re-solve a flagged problem, no notes"],
+      ]},
+      {label:"Week 16 — Timed contests", days:[
+        [76,"Timed practice","Codeforces Div 3, problem A/B"],
+        [77,"Timed practice","LeetCode weekly contest problem"],
+        [78,"Timed practice","Codeforces Div 3, problem C"],
+        [79,"Timed practice","LeetCode weekly contest problem"],
+        [80,"Final review","Revisit your 3 hardest problems overall"],
+      ]},
+    ]
+  },
+];
+
+const container = document.getElementById('phases');
+
+PHASES.forEach((phase, pi) => {
+  const section = document.createElement('section');
+  section.className = 'phase';
+  section.id = 'phase-' + phase.id;
+  section.style.setProperty('--phase-color', phase.color);
+
+  let weeksHTML = '';
+  phase.weeks.forEach((week, wi) => {
+    let rowsHTML = '';
+    week.days.forEach(([n, topic, task]) => {
+      rowsHTML += `
+        <div class="day-row" data-day="${n}">
+          <input type="checkbox" class="chk" id="d${n}" data-day="${n}">
+          <label class="daynum" for="d${n}">Day ${n}</label>
+          <span class="topic">${topic}</span>
+          <span class="task">${task}</span>
+        </div>`;
+    });
+    weeksHTML += `
+      <details class="week" ${wi===0 ? 'open' : ''}>
+        <summary>${week.label}<span class="week-progress" data-weekprog>0/${week.days.length}</span></summary>
+        <div class="day-head-row">
+          <span></span><span>Day</span><span>Topic</span><span class="task-h">Task</span>
+        </div>
+        ${rowsHTML}
+      </details>`;
+  });
+
+  section.innerHTML = `
+    <div class="phase-head">
+      <span class="phase-num">${phase.num}</span>
+      <span class="phase-title">${phase.title}</span>
+      <span class="phase-meta">${phase.meta}</span>
+    </div>
+    <p class="phase-note">${phase.note}</p>
+    ${weeksHTML}
+  `;
+  container.appendChild(section);
+});
+
+// ---- interactivity: checkbox state, progress bar, per-week counters ----
+const allBoxes = () => Array.from(document.querySelectorAll('.chk'));
+const totalDays = allBoxes().length;
+
+function updateProgress(){
+  const done = allBoxes().filter(b => b.checked).length;
+  const pct = totalDays ? Math.round((done/totalDays)*100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${done} / ${totalDays} days`;
+
+  document.querySelectorAll('details.week').forEach(week => {
+    const boxes = Array.from(week.querySelectorAll('.chk'));
+    const doneCount = boxes.filter(b => b.checked).length;
+    const label = week.querySelector('[data-weekprog]');
+    if(label) label.textContent = `${doneCount}/${boxes.length}`;
+  });
+}
+
+document.addEventListener('change', (e) => {
+  if(!e.target.classList.contains('chk')) return;
+  const row = e.target.closest('.day-row');
+  row.classList.toggle('done', e.target.checked);
+  updateProgress();
+});
+
+updateProgress();
+</script>
+
+</body>
+</html>
